@@ -1,0 +1,10 @@
+#header {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+
+}
+
+#book {
+    font-size: 30px;
+}
