@@ -40,7 +40,7 @@ app.get("/tables", function(req, res) {
 
 
 app.get("/api/reserve", function(req, res) {
-    return res.json(characters);
+    return res.json(reservations);
 });
 
 
