@@ -8,3 +8,12 @@
 #book {
     font-size: 30px;
 }
+#formContainer {
+    display: inline-block;
+}
+
+#form {
+    width: 80%;
+    text-align: center;
+
+}
