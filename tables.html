@@ -49,50 +49,41 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-
-            <div class="col-12">
-
-                <div class="card mb-4">
-                    <div class="card-header" id="resHeader">
-                        <h3><strong>Current Reservations</strong></h3>
-                    </div>
-
-                    <div class="card" style="width: 50rem;">
-                        <div class="card-header" id="tableNum"></div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item" id="resName"></li>
-                            <li class="list-group-item" id="resPhone"></li>
-                            <li class="list-group-item" id="resEmail"></li>
-                            <li class="list-group-item" id="resID"></li>
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
 
 
-        <!--JQuery -->
+        <table class="table table-sm table-hover" id="res-table">
+            <thead>
+                <tr>
+                    <th scope="col">Reservation Name</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">ID</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+
         <script src="https://code.jquery.com/jquery.js"></script>
 
         <script type="text/javascript">
-
-
-// this is copied from star wars #14 activity, the view.html file.  
+  
 $("#table").on("click", function() {
       $.get("/api/reserve/", function(data) {
         console.log(data);
         for (var i = 0; i < data.length; i++) {
-        if (data[i]) {
-          $("#resName").text(data[i].resName);
-          $("#resPhone").text(data[i].resPhone);
-          $("#resEmail").text(data[i].resEmail);
-          $("#resID").text(data[i].resID);
-        }
+            if (data[i]) {
+        var newRow = $("<tr>").append(
+            $("<td>").text(data[i].resName),
+            $("<td>").text(data[i].resPhone),
+            $("<td>").text(data[i].resEmail),
+            $("<td>").text(data[i].resID)
+        );
+
+        $("#res-table > tbody").append(newRow);
+}
         else {
-          $("#resName").text("Something went wrong. I'm hoping this will display all data.");
-        //   $("#stats").hide();
+            alert("Something went wrong.");
         }
     }
       });
