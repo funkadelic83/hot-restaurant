@@ -80,26 +80,21 @@
 
 
 // this is copied from star wars #14 activity, the view.html file.  
-$("#search-btn").on("click", function() {
-      var searchedCharacter = $("#character-search").val().trim();
-
-      // Using a RegEx Pattern to remove spaces from searchedCharacter
-      // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-      searchedCharacter = searchedCharacter.replace(/\s+/g, "").toLowerCase();
-
-      $.get("/api/characters/" + searchedCharacter, function(data) {
+$("#table").on("click", function() {
+      $.get("/api/reserve/", function(data) {
         console.log(data);
-        if (data) {
-          $("#stats").show();
-          $("#name").text(data.name);
-          $("#role").text(data.role);
-          $("#age").text(data.age);
-          $("#force-points").text(data.forcePoints);
+        for (var i = 0; i < data.length; i++) {
+        if (data[i]) {
+          $("#resName").text(data[i].resName);
+          $("#resPhone").text(data[i].resPhone);
+          $("#resEmail").text(data[i].resEmail);
+          $("#resID").text(data[i].resID);
         }
         else {
-          $("#name").text("The force is not strong with this one. Your character was not found.");
-          $("#stats").hide();
+          $("#resName").text("Something went wrong. I'm hoping this will display all data.");
+        //   $("#stats").hide();
         }
+    }
       });
     });        </script>
 
