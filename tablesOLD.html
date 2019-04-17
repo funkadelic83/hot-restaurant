@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+
+    <title>Tables Hot Restaurant</title>
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+
+    <!--  Moment JS -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
+    <!-- Bootstrap Javascript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+
+
+    <!-- CSS and Bootstrap -->
+    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/style.css">
+
+</head>
+
+<body>
+    <div id="container">
+        <div class="jumbotron" id="header">
+            <h1 class="display-4">Hot Restaurant</h1>
+            <hr class="my-4">
+            <p id="note">Current Reservations and Waiting List</p>
+
+            <div class="row">
+                <div class="col-md-4" id="space"></div>
+
+                <div class="col-md-2" id="tableButton">
+                    <button type="button" class="btn btn-primary" id="table">View Tables</button>
+                </div>
+                <div class="col-md-1" id="homeButton">
+                    <button type="button" class="btn btn-danger" id="home">Home</button>
+                </div>
+            </div>
+        </div>
+
+
+        <table class="table table-sm table-hover" id="res-table">
+            <thead>
+                <tr>
+                    <th scope="col">Reservation Name</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">ID</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+
+
+        Waitlist
+        <table class="table table-sm table-hover" id="wait-table">
+            <thead>
+                <tr>
+                    <th scope="col">Reservation Name</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">ID</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+
+
+
+        <script src="https://code.jquery.com/jquery.js"></script>
+
+        <script type="text/javascript">
+            $("#table").on("click", function () {
+
+                $.get("/api/reserve/", function (data) {
+
+                    $("#res-table > tbody").empty();
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i]) {
+                            var newRow = $("<tr>").append(
+                                $("<td>").text(data[i].resName),
+                                $("<td>").text(data[i].resPhone),
+                                $("<td>").text(data[i].resEmail),
+                                $("<td>").text(data[i].resID)
+                            );
+
+                            $("#res-table > tbody").append(newRow);
+                        } else {
+                            alert("Something went wrong.");
+                        }
+                    }
+
+
+
+
+
+
+
+                    
+                });
+
+
+
+
+
+
+
+
+            });
+        </script>
+
+</body>
+
+</html>
