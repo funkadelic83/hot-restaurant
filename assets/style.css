@@ -5,15 +5,44 @@
 
 }
 
-#book {
-    font-size: 30px;
+#tableButton {
+    width: 100%;
+
+}
+
+#note {
+    font-size: 35px;
 }
 #formContainer {
-    display: inline-block;
+    text-align: center;
 }
 
 #form {
     width: 80%;
-    text-align: center;
+    display: inline-block;
 
+}
+
+#table {
+    margin-left: 30px;
+}
+
+#homeTable {
+    margin-left: 40px;
+}
+
+#homeRes {
+    margin-left: 40px;
+
+}
+
+#cardWrap {
+    display: inline-block;
+    border: 2px;
+    border-style: solid;
+    border-color: gray;
+}
+
+#resHeader {
+    margin-bottom: 20px:
 }
