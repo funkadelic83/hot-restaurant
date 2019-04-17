@@ -70,7 +70,8 @@
   
 $("#table").on("click", function() {
       $.get("/api/reserve/", function(data) {
-        console.log(data);
+        // console.log(data);
+        $("#res-table > tbody").empty();
         for (var i = 0; i < data.length; i++) {
             if (data[i]) {
         var newRow = $("<tr>").append(
