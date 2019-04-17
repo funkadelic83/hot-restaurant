@@ -6,7 +6,9 @@ var PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
+app.use(express.static(path.join(__dirname + "/assets")));
+ 
+console.dir(app);   
 var reservations = [
     {
         resName: "Bob",
@@ -27,7 +29,7 @@ var waitList = [
 
 
 app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "home.html"));
+    res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.get("/reserve", function(req, res) {
@@ -45,11 +47,13 @@ app.get("/api/reserve", function(req, res) {
 
 
 app.post("/api/reserve", function(req, res) {
+    console.log(req.body);
     var newReservation = req.body;
-    newReservation.routeName = newReservation.name.replace()(/\s+/g, "").toLowerCase();
+    console.log(newReservation.resName);
+    newReservation.routeName = newReservation.resName.replace(/\s+/g, "").toLowerCase();
     console.log(newReservation)
     reservations.push(newReservation);
-    res.json(newReservation);
+    res.json(reservations);
 })
 
 app.listen(PORT, function() {
