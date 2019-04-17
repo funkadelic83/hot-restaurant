@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+
+    <title>Tables Hot Restaurant</title>
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+
+    <!--  Moment JS -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
+    <!-- Bootstrap Javascript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+
+    <!-- CSS and Bootstrap -->
+    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/style.css">
+
+</head>
+
+<body>
+    <div id="container">
+        <div class="jumbotron" id="header">
+            <h1 class="display-4">Hot Restaurant</h1>
+            <hr class="my-4">
+            <p id="note">Current Reservations and Waiting List</p>
+
+            <div class="row">
+                <div class="col-md-4" id="space"></div>
+
+                <div class="col-md-2" id="tableButton">
+                    <button type="button" class="btn btn-primary" id="table">View Tables</button>
+                </div>
+                <div class="col-md-1" id="homeButton">
+                    <button type="button" class="btn btn-danger" id="home">Home</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-12">
+
+                <div class="card mb-4">
+                    <div class="card-header" id="resHeader">
+                        <h3><strong>Current Reservations</strong></h3>
+                    </div>
+
+                    <div class="card" style="width: 50rem;">
+                        <div class="card-header" id="tableNum"></div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item" id="resName"></li>
+                            <li class="list-group-item" id="resPhone"></li>
+                            <li class="list-group-item" id="resEmail"></li>
+                            <li class="list-group-item" id="resID"></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--JQuery -->
+        <script src="https://code.jquery.com/jquery.js"></script>
+
+        <script type="text/javascript">
+
+
+// this is copied from star wars #14 activity, the view.html file.  
+$("#search-btn").on("click", function() {
+      var searchedCharacter = $("#character-search").val().trim();
+
+      // Using a RegEx Pattern to remove spaces from searchedCharacter
+      // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+      searchedCharacter = searchedCharacter.replace(/\s+/g, "").toLowerCase();
+
+      $.get("/api/characters/" + searchedCharacter, function(data) {
+        console.log(data);
+        if (data) {
+          $("#stats").show();
+          $("#name").text(data.name);
+          $("#role").text(data.role);
+          $("#age").text(data.age);
+          $("#force-points").text(data.forcePoints);
+        }
+        else {
+          $("#name").text("The force is not strong with this one. Your character was not found.");
+          $("#stats").hide();
+        }
+      });
+    });        </script>
+
+</body>
+
+</html>
